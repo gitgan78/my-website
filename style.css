@@ -28,12 +28,16 @@
    2. Base & Sticky Footer Setup
    ================================= */
 
+/* Global Box Sizing FIX: ensures padding and border are included inside an element's total width/height */
+* {
+    box-sizing: border-box;
+}
+
 /* Ensure HTML and BODY span the full viewport height */
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    box-sizing: border-box; 
 }
 
 /* Set up the body for the Sticky Footer (Flexbox) and general styles */
@@ -60,9 +64,11 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* FIX: Keep larger desktop padding, but allow mobile adjustment */
-    padding: 15px 50px;
+    /* FIX: Using flexible padding for better mobile compatibility */
+    padding: 15px 5%; 
     background-color: var(--header-bg);
+    /* Ensures the navbar itself doesn't cause overflow */
+    width: 100%; 
 }
 
 .nav-links a {
@@ -73,7 +79,6 @@ body {
     margin-right: 25px;
     padding: 5px 0;
     transition: color 0.3s;
-    /* Allow text/emoji to wrap if screen is very small */
     white-space: nowrap; 
 }
 
@@ -114,8 +119,8 @@ main {
     display: flex;
     max-width: 1200px; /* Centers the content */
     margin: 40px auto;
-    /* FIX: This padding ensures inner content doesn't touch the edge on desktop */
-    padding: 0 20px; 
+    /* FIX: Using flexible padding instead of fixed pixels on the sides */
+    padding: 0 5%; 
     gap: 40px; 
     align-items: flex-start; /* Aligns content to the top */
     flex-wrap: wrap; 
@@ -166,6 +171,8 @@ main {
     background-color: var(--news-bg);
     box-shadow: var(--box-shadow); 
     align-self: flex-start; 
+    /* FIX: Ensure news box itself is 100% width on mobile */
+    max-width: 100%; 
 }
 
 .news-section h3 {
@@ -205,8 +212,8 @@ footer {
 @media (max-width: 800px) {
     .home-layout {
         flex-direction: column; 
-        /* FIX: Use smaller padding for stacking content */
-        padding: 0 15px; 
+        /* Reset padding for mobile, let the 5% padding on 'main' handle spacing */
+        padding: 0 5%; 
     }
     
     .main-content-left, .news-section {
@@ -218,16 +225,13 @@ footer {
     }
     
     .navbar {
-        /* FIX: Use smaller padding here so elements fit the screen */
-        padding: 15px 15px; 
+        /* Already updated to 5% padding */
     }
     
     .nav-links {
-        /* FIX: Allow links to wrap to prevent cutting if names are long */
         flex-wrap: wrap; 
     }
     .nav-links a {
-        /* Reduce link margin slightly on mobile */
         margin-right: 15px;
     }
 }
