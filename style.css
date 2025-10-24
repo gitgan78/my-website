@@ -33,7 +33,7 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Good practice for layout */
+    box-sizing: border-box; 
 }
 
 /* Set up the body for the Sticky Footer (Flexbox) */
@@ -62,7 +62,7 @@ body {
 }
 
 .nav-links a {
-    /* 1. Top bar element font slightly bigger */
+    /* Top bar element font slightly bigger */
     font-size: 1.15em; 
     text-decoration: none;
     color: var(--text-color);
@@ -112,7 +112,7 @@ main {
     padding: 0 20px;
     gap: 40px; 
     align-items: flex-start;
-    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    flex-wrap: wrap; 
 }
 
 /* Left Column: Profile, Text, Links */
@@ -131,7 +131,6 @@ main {
 .profile-section img {
     border-radius: 8px;
     border: 1px solid var(--border-color);
-    /* width: 30% is from inline style in HTML */
 }
 
 .profile-text h2 {
@@ -160,7 +159,7 @@ main {
     border-radius: 8px;
     background-color: var(--news-bg);
     box-shadow: var(--box-shadow); 
-    align-self: flex-start; /* Ensures it starts at the top of the column */
+    align-self: flex-start; 
 }
 
 .news-section h3 {
@@ -188,7 +187,6 @@ main {
 footer {
     text-align: center;
     padding: 15px;
-    /* margin-top is no longer needed due to flex-grow: 1 on main */
     border-top: 1px solid var(--border-color);
     background-color: var(--header-bg);
     font-size: 0.9em;
@@ -196,7 +194,7 @@ footer {
 }
 
 /* =================================
-   6. Responsiveness
+   6. Responsiveness (Mobile stacking fixed)
    ================================= */
 @media (max-width: 800px) {
     .home-layout {
@@ -208,7 +206,9 @@ footer {
         width: 100%; 
     }
     .news-section {
-        order: -1; /* Move news to the top on mobile for better visibility */
+        /* The 'order: -1;' rule has been removed here. 
+           This ensures the News section now appears AFTER the main profile content 
+           on mobile, following the HTML order. */
         margin-bottom: 20px;
     }
     .navbar {
