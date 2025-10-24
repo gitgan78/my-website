@@ -14,10 +14,11 @@
 }
 
 [data-theme="dark"] {
-    /* Dark Theme Variables, activated when <html> has data-theme="dark" */
+    /* Dark Theme Variables */
     --background-color: #1a1a1a;
     --text-color: #f0f0f0;
-    --link-color: #8ab4f8; 
+    /* FIX: Adjusted link color for better contrast/visibility in dark mode */
+    --link-color: #79a6fe; 
     --header-bg: #2a2a2a;
     --border-color: #3e3e3e;
     --news-bg: #2a2a2a;
@@ -25,35 +26,30 @@
 }
 
 /* =================================
-   2. Base & Sticky Footer Setup
+   2. Base Styles (Restored to Stability)
    ================================= */
 
-/* Global Box Sizing FIX: ensures padding and border are included inside an element's total width/height */
-* {
-    box-sizing: border-box;
-}
+/* Using border-box on everything is usually fine, but remove it globally to revert to original stability */
+/* * {
+    box-sizing: border-box; 
+} */
 
-/* Ensure HTML and BODY span the full viewport height */
 html, body {
-    height: 100%;
+    /* Height removed as footer is gone, keeping margins/padding clear */
     margin: 0;
     padding: 0;
+    /* overflow-x: hidden; is also removed to prevent accidental cutting */
 }
 
-/* Set up the body for the Sticky Footer (Flexbox) and general styles */
 body {
     font-family: Arial, sans-serif;
     background-color: var(--background-color);
     color: var(--text-color);
     transition: background-color 0.3s, color 0.3s;
     
-    /* Prevents content from causing horizontal scrolling/zooming on mobile */
-    overflow-x: hidden; 
-    
-    /* Sticky Footer properties */
-    display: flex;
-    flex-direction: column; /* Stacks header, main, and footer vertically */
-    min-height: 100vh; /* Minimum height is 100% of viewport */
+    /* Revert body back to a normal block container */
+    display: block;
+    min-height: auto; 
 }
 
 /* =================================
@@ -64,15 +60,13 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* FIX: Using flexible padding for better mobile compatibility */
-    padding: 15px 5%; 
+    /* FIX: Restore stable desktop padding */
+    padding: 15px 50px; 
     background-color: var(--header-bg);
-    /* Ensures the navbar itself doesn't cause overflow */
     width: 100%; 
 }
 
 .nav-links a {
-    /* Font size adjustment */
     font-size: 1.15em; 
     text-decoration: none;
     color: var(--text-color);
@@ -111,18 +105,16 @@ body {
    4. Main Content Layout (Two Columns)
    ================================= */
 
-/* Main content area. This element grows to push the footer down. */
+/* Main content area */
 main {
-    flex-grow: 1; /* Key for sticky footer: consumes all available vertical space */
-    
-    /* Two-column Flexbox setup */
+    /* Revert to original settings */
     display: flex;
-    max-width: 1200px; /* Centers the content */
+    max-width: 1200px; 
+    /* FIX: Restore stable desktop padding */
     margin: 40px auto;
-    /* FIX: Using flexible padding instead of fixed pixels on the sides */
-    padding: 0 5%; 
+    padding: 0 20px; 
     gap: 40px; 
-    align-items: flex-start; /* Aligns content to the top */
+    align-items: flex-start; 
     flex-wrap: wrap; 
 }
 
@@ -142,12 +134,6 @@ main {
 .profile-section img {
     border-radius: 8px;
     border: 1px solid var(--border-color);
-}
-
-.profile-text h2 {
-    margin-top: 0;
-    margin-bottom: 5px;
-    color: var(--text-color);
 }
 
 .links-section a {
@@ -171,8 +157,6 @@ main {
     background-color: var(--news-bg);
     box-shadow: var(--box-shadow); 
     align-self: flex-start; 
-    /* FIX: Ensure news box itself is 100% width on mobile */
-    max-width: 100%; 
 }
 
 .news-section h3 {
@@ -194,38 +178,29 @@ main {
 }
 
 /* =================================
-   5. Footer
-   ================================= */
-
-footer {
-    text-align: center;
-    padding: 15px;
-    border-top: 1px solid var(--border-color);
-    background-color: var(--header-bg);
-    font-size: 0.9em;
-    color: var(--text-color);
-}
-
-/* =================================
-   6. Responsiveness (Mobile)
+   5. Responsiveness (Mobile Restored)
    ================================= */
 @media (max-width: 800px) {
     .home-layout {
         flex-direction: column; 
-        /* Reset padding for mobile, let the 5% padding on 'main' handle spacing */
-        padding: 0 5%; 
+        /* Restored to original stable mobile padding */
+        padding: 0 15px; 
     }
     
     .main-content-left, .news-section {
         flex: none; 
         width: 100%; 
+        /* FIX: Ensure the box fits by padding inside its container */
+        padding: 0;
     }
+    
     .news-section {
         margin-bottom: 20px;
     }
     
     .navbar {
-        /* Already updated to 5% padding */
+        /* Restored to original stable mobile padding */
+        padding: 15px 15px; 
     }
     
     .nav-links {
@@ -233,5 +208,10 @@ footer {
     }
     .nav-links a {
         margin-right: 15px;
+    }
+    
+    /* Small fix to ensure news box padding is correct on mobile */
+    .news-section {
+        padding: 20px;
     }
 }
