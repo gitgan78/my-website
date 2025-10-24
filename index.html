@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gagan Anekonda Veereshi</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="nav-links">
+                <a href="#cv.html">Home</a> 
+                <a href="#research.html">Research</a>
+            </div>
+            <button id="theme-toggle" aria-label="Toggle dark/light theme">
+                <i class="fas fa-moon"></i>
+            </button>
+        </nav>
+        <hr class="nav-underline">
+    </header>
+
+    <main class="home-layout">
+        <div class="main-content-left"> 
+            <div class="profile-section">
+                <img src="pic.jpeg" alt="Gagan's picture here" style="width: 30%; height: auto;">
+                
+                <div class="profile-text">
+                    <div>
+                        <h2>Gagan Anekonda Veereshi</h2>
+                    </div>
+                    <div>Researcher</div>
+                    <div><b>Interests:</b> Physics, Computer Science</div>
+                </div>
+            </div>
+
+            <p class="links-section">
+                <b>Links:</b>
+                <a href="URL_TO_YOUR_CV" target="_blank" aria-label="CV">
+                    <i class="fas fa-file-alt"></i> CV
+                </a>
+                /
+                <a href="https://github.com/gitgan78" target="_blank" aria-label="GitHub">
+                    <i class="fab fa-github"></i> Github
+                </a>
+                /
+                <a href="https://scholar.google.com/citations?user=qQBOYzAAAAAJ&hl=en&oi=ao" target="_blank" aria-label="Google Scholar">
+                    <i class="fas fa-graduation-cap"></i> Google Scholar
+                </a>
+                /
+                <a href="https://linkedin.com/in/gagan-anekonda-veereshi-81a463219" target="_blank" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                /
+                <a href="https://www.instagram.com/gagan_av_" target="_blank" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
+            </p>
+        </div> 
+        
+        <div class="news-section">
+            <h3>📢 News & Updates</h3>
+            <ul>
+                <li>To be added</li>
+                
+            </ul>
+        </div>
+        </main>
+
+    <footer>
+         ESCN!
+    </footer>
+    
+    <script>
+        // JavaScript for theme toggling
+        const toggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        toggle.addEventListener('click', () => {
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.setAttribute('data-theme', 'light');
+                toggle.innerHTML = '<i class="fas fa-moon"></i>'; // Set icon to moon for dark mode option
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                toggle.innerHTML = '<i class="fas fa-sun"></i>'; // Set icon to sun for light mode option
+            }
+        });
+    </script>
+</body>
+</html>

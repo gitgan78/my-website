@@ -1,0 +1,217 @@
+/* =================================
+   1. Theme Variables (Dark/Light)
+   ================================= */
+
+:root {
+    /* Light Theme Variables (Default) */
+    --background-color: #ffffff;
+    --text-color: #333333;
+    --link-color: #007bff;
+    --header-bg: #f8f8f8;
+    --border-color: #e0e0e0;
+    --news-bg: #f9f9f9;
+    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+    /* Dark Theme Variables */
+    --background-color: #1a1a1a;
+    --text-color: #f0f0f0;
+    --link-color: #8ab4f8; /* Lighter blue for dark mode */
+    --header-bg: #2a2a2a;
+    --border-color: #3e3e3e;
+    --news-bg: #2a2a2a;
+    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* =================================
+   2. Base & Sticky Footer Setup
+   ================================= */
+
+/* Ensure HTML and BODY span the full viewport height */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Good practice for layout */
+}
+
+/* Set up the body for the Sticky Footer (Flexbox) */
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+    
+    /* Sticky Footer properties */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Minimum height is 100% of viewport */
+}
+
+/* =================================
+   3. Header and Navigation
+   ================================= */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background-color: var(--header-bg);
+}
+
+.nav-links a {
+    /* 1. Top bar element font slightly bigger */
+    font-size: 1.15em; 
+    text-decoration: none;
+    color: var(--text-color);
+    margin-right: 25px;
+    padding: 5px 0;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--link-color);
+}
+
+.nav-underline {
+    border: 0;
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 0;
+}
+
+/* Theme Toggle Button Styling */
+#theme-toggle {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.2em;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.3s;
+}
+#theme-toggle:hover {
+    color: var(--link-color);
+}
+
+
+/* =================================
+   4. Main Content Layout (Two Columns)
+   ================================= */
+
+/* Main content grows to push the footer down */
+main {
+    flex-grow: 1; /* Key for sticky footer */
+    
+    /* Two-column layout settings */
+    display: flex;
+    max-width: 1200px; /* Center the main content */
+    margin: 40px auto;
+    padding: 0 20px;
+    gap: 40px; 
+    align-items: flex-start;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+}
+
+/* Left Column: Profile, Text, Links */
+.main-content-left {
+    flex: 2; 
+    min-width: 300px; 
+}
+
+.profile-section {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-section img {
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    /* width: 30% is from inline style in HTML */
+}
+
+.profile-text h2 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: var(--text-color);
+}
+
+.links-section a {
+    color: var(--link-color);
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.links-section a:hover {
+    text-decoration: underline;
+}
+
+/* Right Column: News Box */
+.news-section {
+    flex: 1; 
+    min-width: 250px; 
+    
+    padding: 20px;
+    border: 1px solid var(--border-color); 
+    border-radius: 8px;
+    background-color: var(--news-bg);
+    box-shadow: var(--box-shadow); 
+    align-self: flex-start; /* Ensures it starts at the top of the column */
+}
+
+.news-section h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.news-section ul {
+    list-style-type: disc; 
+    padding-left: 20px;
+    margin: 0;
+}
+
+.news-section li {
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+/* =================================
+   5. Footer
+   ================================= */
+
+footer {
+    text-align: center;
+    padding: 15px;
+    /* margin-top is no longer needed due to flex-grow: 1 on main */
+    border-top: 1px solid var(--border-color);
+    background-color: var(--header-bg);
+    font-size: 0.9em;
+    color: var(--text-color);
+}
+
+/* =================================
+   6. Responsiveness
+   ================================= */
+@media (max-width: 800px) {
+    .home-layout {
+        flex-direction: column; /* Stack columns vertically */
+        padding: 0 15px;
+    }
+    .main-content-left, .news-section {
+        flex: none; 
+        width: 100%; 
+    }
+    .news-section {
+        order: -1; /* Move news to the top on mobile for better visibility */
+        margin-bottom: 20px;
+    }
+    .navbar {
+        padding: 15px 20px;
+    }
+}
