@@ -17,8 +17,7 @@
     /* Dark Theme Variables */
     --background-color: #1a1a1a;
     --text-color: #f0f0f0;
-    /* FIX: Adjusted link color for better contrast/visibility in dark mode */
-    --link-color: #79a6fe; 
+    --link-color: #8ab4f8; /* Lighter blue for dark mode */
     --header-bg: #2a2a2a;
     --border-color: #3e3e3e;
     --news-bg: #2a2a2a;
@@ -26,23 +25,28 @@
 }
 
 /* =================================
-   2. Base Styles
+   2. Base & Sticky Footer Setup
    ================================= */
 
-/* Ensure clean slate for layout */
+/* Ensure HTML and BODY span the full viewport height */
 html, body {
+    height: 100%;
     margin: 0;
     padding: 0;
+    box-sizing: border-box; 
 }
 
+/* Set up the body for the Sticky Footer (Flexbox) */
 body {
     font-family: Arial, sans-serif;
     background-color: var(--background-color);
     color: var(--text-color);
     transition: background-color 0.3s, color 0.3s;
     
-    display: block;
-    min-height: auto; 
+    /* Sticky Footer properties */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Minimum height is 100% of viewport */
 }
 
 /* =================================
@@ -53,21 +57,18 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* Stable desktop padding */
-    padding: 15px 50px; 
+    padding: 15px 50px;
     background-color: var(--header-bg);
-    width: 100%; 
 }
 
 .nav-links a {
-    /* Font size adjustment */
+    /* Top bar element font slightly bigger */
     font-size: 1.15em; 
     text-decoration: none;
     color: var(--text-color);
     margin-right: 25px;
     padding: 5px 0;
     transition: color 0.3s;
-    white-space: nowrap; 
 }
 
 .nav-links a:hover {
@@ -81,6 +82,7 @@ body {
     margin: 0;
 }
 
+/* Theme Toggle Button Styling */
 #theme-toggle {
     background: none;
     border: none;
@@ -99,13 +101,17 @@ body {
    4. Main Content Layout (Two Columns)
    ================================= */
 
+/* Main content grows to push the footer down */
 main {
+    flex-grow: 1; /* Key for sticky footer */
+    
+    /* Two-column layout settings */
     display: flex;
-    max-width: 1200px; 
+    max-width: 1200px; /* Center the main content */
     margin: 40px auto;
-    padding: 0 20px; 
+    padding: 0 20px;
     gap: 40px; 
-    align-items: flex-start; 
+    align-items: flex-start;
     flex-wrap: wrap; 
 }
 
@@ -127,10 +133,20 @@ main {
     border: 1px solid var(--border-color);
 }
 
+.profile-text h2 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: var(--text-color);
+}
+
 .links-section a {
     color: var(--link-color);
     text-decoration: none;
     margin: 0 5px;
+}
+
+.links-section a:hover {
+    text-decoration: underline;
 }
 
 /* Right Column: News Box */
@@ -138,8 +154,6 @@ main {
     flex: 1; 
     min-width: 250px; 
     
-    /* FIX: This internal padding is what might be causing the cut-off,
-       but we need it for breathing room. We fix it in the media query. */
     padding: 20px;
     border: 1px solid var(--border-color); 
     border-radius: 8px;
@@ -148,7 +162,6 @@ main {
     align-self: flex-start; 
 }
 
-/* Remaining news-section styles... */
 .news-section h3 {
     margin-top: 0;
     margin-bottom: 15px;
@@ -168,35 +181,37 @@ main {
 }
 
 /* =================================
-   5. Responsiveness (Mobile Fixes)
+   5. Footer
+   ================================= */
+
+footer {
+    text-align: center;
+    padding: 15px;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--header-bg);
+    font-size: 0.9em;
+    color: var(--text-color);
+}
+
+/* =================================
+   6. Responsiveness (Mobile stacking fixed)
    ================================= */
 @media (max-width: 800px) {
     .home-layout {
-        flex-direction: column; 
-        /* Stable mobile padding */
-        padding: 0 15px; 
+        flex-direction: column; /* Stack columns vertically */
+        padding: 0 15px;
     }
-    
     .main-content-left, .news-section {
         flex: none; 
         width: 100%; 
-        /* FIX: Use border-box only for these two sections to ensure padding is calculated 
-           *inside* the 100% width, preventing cut-off. */
-        box-sizing: border-box; 
     }
-    
     .news-section {
+        /* The 'order: -1;' rule has been removed here. 
+           This ensures the News section now appears AFTER the main profile content 
+           on mobile, following the HTML order. */
         margin-bottom: 20px;
     }
-    
     .navbar {
-        padding: 15px 15px; 
-    }
-    
-    .nav-links {
-        flex-wrap: wrap; 
-    }
-    .nav-links a {
-        margin-right: 15px;
+        padding: 15px 20px;
     }
 }
