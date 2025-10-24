@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="fontawesome/css/all.min.css">
 </head>
-<body>
 
+<body>
     <header>
         <nav class="navbar">
             <div class="nav-links">
@@ -23,6 +23,7 @@
     </header>
 
     <main class="home-layout">
+        
         <div class="main-content-left"> 
             <div class="profile-section">
                 <img src="pic.jpeg" alt="Gagan's picture here" style="width: 30%; height: auto;">
@@ -63,8 +64,9 @@
         <div class="news-section">
             <h3>📢 News & Updates</h3>
             <ul>
-                <li>To be added</li>
-                
+                <li>**Oct 2025:** Our paper on Quantum Computing was accepted at *J. of Advanced Physics*!</li>
+                <li>**Sep 2025:** Presented my research on ML algorithms at the *Global Tech Conference*.</li>
+                <li>**Aug 2025:** Started a new project on computational astrophysics.</li>
             </ul>
         </div>
         </main>
@@ -74,17 +76,16 @@
     </footer>
     
     <script>
-        // JavaScript for theme toggling
         const toggle = document.getElementById('theme-toggle');
-        const html = document.documentElement;
+        const html = document.documentElement; // Targets the <html> tag
 
         toggle.addEventListener('click', () => {
             if (html.getAttribute('data-theme') === 'dark') {
                 html.setAttribute('data-theme', 'light');
-                toggle.innerHTML = '<i class="fas fa-moon"></i>'; // Set icon to moon for dark mode option
+                toggle.innerHTML = '<i class="fas fa-moon"></i>'; // Change icon to moon
             } else {
                 html.setAttribute('data-theme', 'dark');
-                toggle.innerHTML = '<i class="fas fa-sun"></i>'; // Set icon to sun for light mode option
+                toggle.innerHTML = '<i class="fas fa-sun"></i>'; // Change icon to sun
             }
         });
     </script>
